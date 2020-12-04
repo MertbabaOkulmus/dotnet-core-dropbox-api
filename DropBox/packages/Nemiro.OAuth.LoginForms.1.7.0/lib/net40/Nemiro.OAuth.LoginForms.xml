@@ -1,0 +1,1222 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Nemiro.OAuth.LoginForms</name>
+    </assembly>
+    <members>
+        <member name="T:Nemiro.OAuth.LoginForms.BrowserEmulationVersion">
+            <summary>
+            Browser Emulation
+            </summary>
+            <remarks>
+            <para><see href="https://msdn.microsoft.com/en-us/library/ee330730(v=vs.85).aspx"/></para>
+            </remarks>
+        </member>
+        <member name="F:Nemiro.OAuth.LoginForms.BrowserEmulationVersion.IE7">
+            <summary>
+            Webpages containing standards-based !DOCTYPE directives are displayed in IE7 Standards mode. Default value for applications hosting the WebBrowser Control.
+            </summary>
+        </member>
+        <member name="F:Nemiro.OAuth.LoginForms.BrowserEmulationVersion.IE8">
+            <summary>
+            Webpages containing standards-based !DOCTYPE directives are displayed in IE8 mode. Default value for Internet Explorer 8.
+            </summary>
+        </member>
+        <member name="F:Nemiro.OAuth.LoginForms.BrowserEmulationVersion.IE8Standards">
+            <summary>
+            Webpages are displayed in IE8 Standards mode, regardless of the declared !DOCTYPE directive. Failing to declare a !DOCTYPE directive causes the page to load in Quirks.
+            </summary>
+        </member>
+        <member name="F:Nemiro.OAuth.LoginForms.BrowserEmulationVersion.IE9">
+            <summary>
+            Internet Explorer 9. Webpages containing standards-based !DOCTYPE directives are displayed in IE9 mode. Default value for Internet Explorer 9.
+            </summary>
+        </member>
+        <member name="F:Nemiro.OAuth.LoginForms.BrowserEmulationVersion.IE9Standards">
+            <summary>
+            Windows Internet Explorer 9. Webpages are displayed in IE9 Standards mode, regardless of the declared !DOCTYPE directive. Failing to declare a !DOCTYPE directive causes the page to load in Quirks.
+            </summary>
+        </member>
+        <member name="F:Nemiro.OAuth.LoginForms.BrowserEmulationVersion.IE10">
+            <summary>
+            Internet Explorer 10. Webpages containing standards-based !DOCTYPE directives are displayed in IE10 Standards mode. Default value for Internet Explorer 10.
+            </summary>
+        </member>
+        <member name="F:Nemiro.OAuth.LoginForms.BrowserEmulationVersion.IE10Standards">
+            <summary>
+            Internet Explorer 10. Webpages are displayed in IE10 Standards mode, regardless of the !DOCTYPE directive.
+            </summary>
+        </member>
+        <member name="F:Nemiro.OAuth.LoginForms.BrowserEmulationVersion.IE11">
+            <summary>
+            IE11. Webpages containing standards-based !DOCTYPE directives are displayed in IE11 edge mode. Default value for IE11.
+            </summary>
+        </member>
+        <member name="F:Nemiro.OAuth.LoginForms.BrowserEmulationVersion.IE11Edge">
+            <summary>
+            Internet Explorer 11. Webpages are displayed in IE11 edge mode, regardless of the declared !DOCTYPE directive. Failing to declare a !DOCTYPE directive causes the page to load in Quirks.
+            </summary>
+        </member>
+        <member name="T:Nemiro.OAuth.LoginForms.ILoginForm">
+            <summary>
+            Defines login form.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.ILoginForm.WebDocumentLoaded(System.Windows.Forms.WebBrowser,System.Uri)">
+            <summary>
+            Web document loaded handler.
+            </summary>
+            <param name="webBrowser">The <see cref="T:System.Windows.Forms.WebBrowser"/> instance.</param>
+            <param name="url">The loaded url.</param>
+        </member>
+        <member name="T:Nemiro.OAuth.LoginForms.Login">
+            <summary>
+            The base class for the authorization forms.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.LoginForms.Login.Client">
+            <summary>
+            An instance of the OAuth client.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.LoginForms.Login.IsSuccessfully">
+            <summary>
+            Gets a value indicating whether the current authorization result is successful or not.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.LoginForms.Login.ErrorMessage">
+            <summary>
+            Error message if an error occurred during the authorization process.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.LoginForms.Login.UserInfo">
+            <summary>
+            Gets user profile.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.LoginForms.Login.AccessToken">
+            <summary>
+            Gets an instance of the access token.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.LoginForms.Login.AccessTokenValue">
+            <summary>
+            Gets the access token value.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.LoginForms.Login.AuthorizationUrl">
+            <summary>
+            Gets or sets autrhorization url.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.LoginForms.Login.CanLogin">
+            <summary>
+            Indicates can sign or not.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.LoginForms.Login.CanLogout">
+            <summary>
+            Indicates can logout or not.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.LoginForms.Login.AuthorizationCode">
+            <summary>
+            Authorization code.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.LoginForms.Login.AutoLogout">
+            <summary>
+            Gets or sets auto logout mode.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.LoginForms.Login.LoadUserInfo">
+            <summary>
+            Gets or sets a value that indicates the need to load user profile information.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.Login.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.LoginForms.Login"/>.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.Login.#ctor(Nemiro.OAuth.OAuthBase,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nemiro.OAuth.LoginForms.Login"/> class with a specified OAuth client.
+            </summary>
+            <param name="client">Instance of the OAuth client.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="responseType">Allows to set the type of response that is expected from the server. Default: <see cref="F:Nemiro.OAuth.ResponseType.Token"/>. Only for OAuth v2.0.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.Login.DefaultCallback(System.Object,Nemiro.OAuth.LoginForms.WebBrowserCallbackEventArgs)">
+            <summary>
+            Default callback.
+            </summary>
+            <param name="sender">Sender.</param>
+            <param name="e">Event arguments.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.Login.GetAccessToken(System.String)">
+            <summary>
+            Gets access token.
+            </summary>
+            <param name="authorizationCode">The authorization code. Default: <see cref="P:Nemiro.OAuth.LoginForms.Login.AuthorizationCode"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.Login.ShowProgress">
+            <summary>
+            Shows progess image.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.Login.HideProgress">
+            <summary>
+            Hides progess image.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.Login.SetProgressImage(System.Drawing.Image)">
+            <summary>
+            Sets new image of the progress.
+            </summary>
+            <param name="image">The image to set.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.Login.Close">
+            <summary>
+            Closes the form.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.Login.SetUrl(System.String,Nemiro.OAuth.LoginForms.WebBrowserCallback)">
+            <summary>
+            Sets and opens new url.
+            </summary>
+            <param name="url">The new url.</param>
+            <param name="callback">The callback function when load completed.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.Login.SetIEVersion">
+            <summary>
+            Sets latest version of IE emulation for current application.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.Login.KillCookies">
+            <summary>
+            Removes all cookies.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.Login.Logout">
+            <summary>
+            Logout.
+            </summary>
+        </member>
+        <member name="F:Nemiro.OAuth.LoginForms.Login.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.Login.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.Login.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:Nemiro.OAuth.LoginForms.AmazonLogin">
+            <summary>
+            Represents login form for Amazon.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.AmazonLogin.#ctor(System.String,System.String,System.String,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the login form with a specified parameters.
+            </summary>
+            <param name="clientId">The client ID obtained from the <see href="http://login.amazon.com/manageApps">App Console</see>.</param>
+            <param name="clientSecret">The client secret obtained from the <see href="http://login.amazon.com/manageApps">App Console</see>.</param>
+            <param name="returnUrl">The address to return.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.AmazonLogin.#ctor(System.String,System.String,System.String,System.String,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the login form with a specified parameters.
+            </summary>
+            <param name="clientId">The client ID obtained from the <see href="http://login.amazon.com/manageApps">App Console</see>.</param>
+            <param name="clientSecret">The client secret obtained from the <see href="http://login.amazon.com/manageApps">App Console</see>.</param>
+            <param name="scope">The scope of the access request.</param>
+            <param name="returnUrl">The address to return.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="responseType">Allows to set the type of response that is expected from the server. Default: <see cref="F:Nemiro.OAuth.ResponseType.Token"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.AmazonLogin.#ctor(Nemiro.OAuth.Clients.AmazonClient,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the login form with a specified OAuth client.
+            </summary>
+            <param name="client">Instance of the OAuth client.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="responseType">Allows to set the type of response that is expected from the server. Default: <see cref="F:Nemiro.OAuth.ResponseType.Token"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.AmazonLogin.WebDocumentLoaded(System.Windows.Forms.WebBrowser,System.Uri)">
+            <summary>
+            Handler of event to receive notification when the document finishes loading. 
+            </summary>
+            <param name="webBrowser">The <see cref="T:System.Windows.Forms.WebBrowser"/> instance.</param>
+            <param name="url">The loaded url.</param>
+        </member>
+        <member name="T:Nemiro.OAuth.LoginForms.CodeProjectLogin">
+            <summary>
+            Represents login form for CodeProject.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.CodeProjectLogin.#ctor(System.String,System.String,System.String,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the login form with a specified parameters.
+            </summary>
+            <param name="clientId">The Client ID obtained from the <see href="https://www.codeproject.com/script/webapi/userclientregistrations.aspx">CodeProject Web API Clients</see>.</param>
+            <param name="clientSecret">The Client Secret obtained from the <see href="https://www.codeproject.com/script/webapi/userclientregistrations.aspx">CodeProject Web API Clients</see>.</param>
+            <param name="returnUrl">The address to return.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="responseType">Allows to set the type of response that is expected from the server. Default: <see cref="F:Nemiro.OAuth.ResponseType.Token"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.CodeProjectLogin.#ctor(Nemiro.OAuth.Clients.CodeProjectClient,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the login form with a specified OAuth client.
+            </summary>
+            <param name="client">Instance of the OAuth client.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="responseType">Allows to set the type of response that is expected from the server. Default: <see cref="F:Nemiro.OAuth.ResponseType.Token"/>.</param>
+        </member>
+        <member name="T:Nemiro.OAuth.LoginForms.DropboxLogin">
+            <summary>
+            Represents login form for Dropbox.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.DropboxLogin.#ctor(System.String,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a new instance of the login form with a specified parameters.
+            </summary>
+            <param name="clientId">The <b>App key</b> obtained from the <see href="https://www.dropbox.com/developers/apps">Dropbox App Console</see>.</param>
+            <param name="clientSecret">The <b>App secret</b> obtained from the <see href="https://www.dropbox.com/developers/apps">Dropbox App Console</see>.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.DropboxLogin.#ctor(System.String,System.String,System.String,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a new instance of the login form with a specified parameters.
+            </summary>
+            <param name="clientId">The <b>App key</b> obtained from the <see href="https://www.dropbox.com/developers/apps">Dropbox App Console</see>.</param>
+            <param name="clientSecret">The <b>App secret</b> obtained from the <see href="https://www.dropbox.com/developers/apps">Dropbox App Console</see>.</param>
+            <param name="scope">The access scope.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="obsolete">Do not use this parameter. It is added to avoid conflicts with overloading methods.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.DropboxLogin.#ctor(System.String,System.String,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a new instance of the login form with a specified parameters.
+            </summary>
+            <param name="clientId">The <b>App key</b> obtained from the <see href="https://www.dropbox.com/developers/apps">Dropbox App Console</see>.</param>
+            <param name="clientSecret">The <b>App secret</b> obtained from the <see href="https://www.dropbox.com/developers/apps">Dropbox App Console</see>.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="returnUrl">The address to return. You can use <see href="https://oauthproxy.nemiro.net"/>, but for reliability use your own server that you control.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.DropboxLogin.#ctor(System.String,System.String,System.String,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the login form with a specified parameters.
+            </summary>
+            <param name="clientId">The <b>App key</b> obtained from the <see href="https://www.dropbox.com/developers/apps">Dropbox App Console</see>.</param>
+            <param name="clientSecret">The <b>App secret</b> obtained from the <see href="https://www.dropbox.com/developers/apps">Dropbox App Console</see>.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="returnUrl">The address to return. You can use <see href="https://oauthproxy.nemiro.net"/>, but for reliability use your own server that you control.</param>
+            <param name="responseType">Allows to set the type of response that is expected from the server. Default: <see cref="F:Nemiro.OAuth.ResponseType.Token"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.DropboxLogin.#ctor(System.String,System.String,System.String,System.String,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the login form with a specified parameters.
+            </summary>
+            <param name="clientId">The <b>App key</b> obtained from the <see href="https://www.dropbox.com/developers/apps">Dropbox App Console</see>.</param>
+            <param name="clientSecret">The <b>App secret</b> obtained from the <see href="https://www.dropbox.com/developers/apps">Dropbox App Console</see>.</param>
+            <param name="scope">The access scope.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="returnUrl">The address to return. You can use <see href="https://oauthproxy.nemiro.net"/>, but for reliability use your own server that you control.</param>
+            <param name="responseType">Allows to set the type of response that is expected from the server. Default: <see cref="F:Nemiro.OAuth.ResponseType.Token"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.DropboxLogin.#ctor(Nemiro.OAuth.Clients.DropboxClient,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the login form with a specified OAuth client.
+            </summary>
+            <param name="client">Instance of the OAuth client.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="responseType">Allows to set the type of response that is expected from the server. Default: <see cref="F:Nemiro.OAuth.ResponseType.Token"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.DropboxLogin.WebDocumentLoaded(System.Windows.Forms.WebBrowser,System.Uri)">
+            <summary>
+            Handler of event to receive notification when the document finishes loading. 
+            </summary>
+            <param name="webBrowser">The <see cref="T:System.Windows.Forms.WebBrowser"/> instance.</param>
+            <param name="url">The loaded url.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.DropboxLogin.Logout">
+            <summary>
+            Logout.
+            </summary>
+        </member>
+        <member name="T:Nemiro.OAuth.LoginForms.FacebookLogin">
+            <summary>
+            Represents login form for Facebook.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.FacebookLogin.#ctor(System.String,System.String,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the login form with a specified parameters.
+            </summary>
+            <param name="clientId">The App ID obtained from the <see href="https://developers.facebook.com/apps/">Facebook Developers</see>.</param>
+            <param name="clientSecret">The App Secret obtained from the <see href="https://developers.facebook.com/apps/">Facebook Developers</see>.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="responseType">Allows to set the type of response that is expected from the server. Default: <see cref="F:Nemiro.OAuth.ResponseType.Token"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.FacebookLogin.#ctor(System.String,System.String,System.String,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the login form with a specified parameters.
+            </summary>
+            <param name="clientId">The App ID obtained from the <see href="https://developers.facebook.com/apps/">Facebook Developers</see>.</param>
+            <param name="clientSecret">The App Secret obtained from the <see href="https://developers.facebook.com/apps/">Facebook Developers</see>.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="scope">The scope of the access request.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="responseType">Allows to set the type of response that is expected from the server. Default: <see cref="F:Nemiro.OAuth.ResponseType.Token"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.FacebookLogin.#ctor(System.String,System.String,System.String,System.String,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the login form with a specified parameters.
+            </summary>
+            <param name="clientId">The App ID obtained from the <see href="https://developers.facebook.com/apps/">Facebook Developers</see>.</param>
+            <param name="clientSecret">The App Secret obtained from the <see href="https://developers.facebook.com/apps/">Facebook Developers</see>.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="scope">The scope of the access request.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="returnUrl">The address to return. Default: <see href="https://www.facebook.com/connect/login_success.html"/>.</param>
+            <param name="responseType">Allows to set the type of response that is expected from the server. Default: <see cref="F:Nemiro.OAuth.ResponseType.Token"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.FacebookLogin.#ctor(Nemiro.OAuth.Clients.FacebookClient,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the login form with a specified OAuth client.
+            </summary>
+            <param name="client">Instance of the OAuth client.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="responseType">Allows to set the type of response that is expected from the server. Default: <see cref="F:Nemiro.OAuth.ResponseType.Token"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.FacebookLogin.WebDocumentLoaded(System.Windows.Forms.WebBrowser,System.Uri)">
+            <summary>
+            Handler of event to receive notification when the document finishes loading. 
+            </summary>
+            <param name="webBrowser">The <see cref="T:System.Windows.Forms.WebBrowser"/> instance.</param>
+            <param name="url">The loaded url.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.FacebookLogin.Logout">
+            <summary>
+            Logout.
+            </summary>
+        </member>
+        <member name="T:Nemiro.OAuth.LoginForms.FoursquareLogin">
+            <summary>
+            Represents login form for Foursquare.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.LoginForms.FoursquareLogin.LogoutUrl">
+            <summary>
+            Gets logout url.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.FoursquareLogin.#ctor(System.String,System.String,System.String,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the login form with a specified parameters.
+            </summary>
+            <param name="clientId">The <b>Client ID</b> obtained from the <see href="https://foursquare.com/oauth">Foursquare Apps</see>.</param>
+            <param name="clientSecret">The <b>Client Secret</b> obtained from the <see href="https://foursquare.com/oauth">Foursquare Apps</see>.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="returnUrl">The address to return. You can use <see href="https://oauthproxy.nemiro.net"/>, but for reliability use your own server that you control.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="responseType">Allows to set the type of response that is expected from the server. Default: <see cref="F:Nemiro.OAuth.ResponseType.Token"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.FoursquareLogin.#ctor(System.String,System.String,System.String,System.String,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the login form with a specified parameters.
+            </summary>
+            <param name="clientId">The <b>Client ID</b> obtained from the <see href="https://foursquare.com/oauth">Foursquare Apps</see>.</param>
+            <param name="clientSecret">The <b>Client Secret</b> obtained from the <see href="https://foursquare.com/oauth">Foursquare Apps</see>.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="scope">The scope of the access request.</param>
+            <param name="returnUrl">The address to return. You can use <see href="https://oauthproxy.nemiro.net"/>, but for reliability use your own server that you control.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="responseType">Allows to set the type of response that is expected from the server. Default: <see cref="F:Nemiro.OAuth.ResponseType.Token"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.FoursquareLogin.#ctor(Nemiro.OAuth.Clients.FoursquareClient,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the login form with a specified OAuth client.
+            </summary>
+            <param name="client">Instance of the OAuth client.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="responseType">Allows to set the type of response that is expected from the server. Default: <see cref="F:Nemiro.OAuth.ResponseType.Token"/>.</param>
+        </member>
+        <member name="T:Nemiro.OAuth.LoginForms.GitHubLogin">
+            <summary>
+            Represents login form for GitHub.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.GitHubLogin.#ctor(System.String,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a new instance of the login form with a specified parameters.
+            </summary>
+            <param name="clientId">The Client ID obtained from the <see href="https://github.com/settings/applications">GitHub Applications</see>.</param>
+            <param name="clientSecret">The Client Secret obtained from the <see href="https://github.com/settings/applications">GitHub Applications</see>.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.GitHubLogin.#ctor(System.String,System.String,System.String,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a new instance of the login form with a specified parameters.
+            </summary>
+            <param name="clientId">The Client ID obtained from the <see href="https://github.com/settings/applications">GitHub Applications</see>.</param>
+            <param name="clientSecret">The Client Secret obtained from the <see href="https://github.com/settings/applications">GitHub Applications</see>.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="scope">The scope of the access request.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="obsolete">Do not use this parameter. It is added to avoid conflicts with overloading methods.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.GitHubLogin.#ctor(System.String,System.String,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a new instance of the login form with a specified parameters.
+            </summary>
+            <param name="clientId">The Client ID obtained from the <see href="https://github.com/settings/applications">GitHub Applications</see>.</param>
+            <param name="clientSecret">The Client Secret obtained from the <see href="https://github.com/settings/applications">GitHub Applications</see>.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="scope">The scope of the access request.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="returnUrl">The address to return. You can use <see href="https://oauthproxy.nemiro.net"/>, but for reliability use your own server that you control.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.GitHubLogin.#ctor(System.String,System.String,System.String,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the login form with a specified parameters.
+            </summary>
+            <param name="clientId">The Client ID obtained from the <see href="https://github.com/settings/applications">GitHub Applications</see>.</param>
+            <param name="clientSecret">The Client Secret obtained from the <see href="https://github.com/settings/applications">GitHub Applications</see>.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="scope">The scope of the access request.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="returnUrl">The address to return. You can use <see href="https://oauthproxy.nemiro.net"/>, but for reliability use your own server that you control.</param>
+            <param name="responseType">Allows to set the type of response that is expected from the server. Default: <see cref="F:Nemiro.OAuth.ResponseType.Token"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.GitHubLogin.#ctor(System.String,System.String,System.String,System.String,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the login form with a specified parameters.
+            </summary>
+            <param name="clientId">The Client ID obtained from the <see href="https://github.com/settings/applications">GitHub Applications</see>.</param>
+            <param name="clientSecret">The Client Secret obtained from the <see href="https://github.com/settings/applications">GitHub Applications</see>.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="scope">The scope of the access request.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="returnUrl">The address to return. You can use <see href="https://oauthproxy.nemiro.net"/>, but for reliability use your own server that you control.</param>
+            <param name="responseType">Allows to set the type of response that is expected from the server. Default: <see cref="F:Nemiro.OAuth.ResponseType.Token"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.GitHubLogin.#ctor(Nemiro.OAuth.Clients.GitHubClient,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the login form with a specified OAuth client.
+            </summary>
+            <param name="client">Instance of the OAuth client.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.GitHubLogin.Logout">
+            <summary>
+            Logout.
+            </summary>
+        </member>
+        <member name="T:Nemiro.OAuth.LoginForms.GoogleLogin">
+            <summary>
+            Represents login form for Google.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.GoogleLogin.#ctor(System.String,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a new instance of the login form with a specified parameters.
+            </summary>
+            <param name="clientId">The Client ID obtained from the <see href="https://console.developers.google.com/">Google Developers Console</see>.</param>
+            <param name="clientSecret">The Client Secret obtained from the <see href="https://console.developers.google.com/">Google Developers Console</see>.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.GoogleLogin.#ctor(System.String,System.String,System.String,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a new instance of the login form with a specified parameters.
+            </summary>
+            <param name="clientId">The Client ID obtained from the <see href="https://console.developers.google.com/">Google Developers Console</see>.</param>
+            <param name="clientSecret">The Client Secret obtained from the <see href="https://console.developers.google.com/">Google Developers Console</see>.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="scope">The scope of the access request.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="obsolete">Do not use this parameter. It is added to avoid conflicts with overloading methods.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.GoogleLogin.#ctor(System.String,System.String,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a new instance of the login form with a specified parameters.
+            </summary>
+            <param name="clientId">The Client ID obtained from the <see href="https://console.developers.google.com/">Google Developers Console</see>.</param>
+            <param name="clientSecret">The Client Secret obtained from the <see href="https://console.developers.google.com/">Google Developers Console</see>.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="scope">The scope of the access request.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="returnUrl">The address to return. You can use <see href="https://oauthproxy.nemiro.net"/>, but for reliability use your own server that you control. Or use <c>urn:ietf:wg:oauth:2.0:oob</c> for keys other than web.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.GoogleLogin.#ctor(System.String,System.String,System.String,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the login form with a specified parameters.
+            </summary>
+            <param name="clientId">The Client ID obtained from the <see href="https://console.developers.google.com/">Google Developers Console</see>.</param>
+            <param name="clientSecret">The Client Secret obtained from the <see href="https://console.developers.google.com/">Google Developers Console</see>.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="scope">The scope of the access request.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="returnUrl">The address to return. You can use <see href="https://oauthproxy.nemiro.net"/>, but for reliability use your own server that you control. Or use <c>urn:ietf:wg:oauth:2.0:oob</c> for keys other than web.</param>
+            <param name="responseType">Allows to set the type of response that is expected from the server. Default: <see cref="F:Nemiro.OAuth.ResponseType.Token"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.GoogleLogin.#ctor(System.String,System.String,System.String,System.String,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the login form with a specified parameters.
+            </summary>
+            <param name="clientId">The Client ID obtained from the <see href="https://console.developers.google.com/">Google Developers Console</see>.</param>
+            <param name="clientSecret">The Client Secret obtained from the <see href="https://console.developers.google.com/">Google Developers Console</see>.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="scope">The scope of the access request.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="returnUrl">The address to return. You can use <see href="https://oauthproxy.nemiro.net"/>, but for reliability use your own server that you control. Or use <c>urn:ietf:wg:oauth:2.0:oob</c> for keys other than web.</param>
+            <param name="responseType">Allows to set the type of response that is expected from the server. Default: <see cref="F:Nemiro.OAuth.ResponseType.Token"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.GoogleLogin.#ctor(Nemiro.OAuth.Clients.GoogleClient,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the login form with a specified OAuth client.
+            </summary>
+            <param name="client">Instance of the OAuth client.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="responseType">Allows to set the type of response that is expected from the server. Default: <see cref="F:Nemiro.OAuth.ResponseType.Token"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.GoogleLogin.WebDocumentLoaded(System.Windows.Forms.WebBrowser,System.Uri)">
+            <summary>
+            Handler of event to receive notification when the document finishes loading. 
+            </summary>
+            <param name="webBrowser">The <see cref="T:System.Windows.Forms.WebBrowser"/> instance.</param>
+            <param name="url">The loaded url.</param>
+        </member>
+        <member name="T:Nemiro.OAuth.LoginForms.InstagramLogin">
+            <summary>
+            Represents login form for Instagram.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.InstagramLogin.#ctor(System.String,System.String,System.String,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the login form with a specified parameters.
+            </summary>
+            <param name="clientId">The <b>Client ID</b> obtained from the <see href="http://instagram.com/developer/clients/manage/">Instagram Manage Clients</see>.</param>
+            <param name="clientSecret">The <b>Client Secret</b> obtained from the <see href="http://instagram.com/developer/clients/manage/">Instagram Manage Clients</see>.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="returnUrl">The address to return.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="responseType">Allows to set the type of response that is expected from the server. Default: <see cref="F:Nemiro.OAuth.ResponseType.Token"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.InstagramLogin.#ctor(System.String,System.String,System.String,System.String,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the login form with a specified parameters.
+            </summary>
+            <param name="clientId">The <b>Client ID</b> obtained from the <see href="http://instagram.com/developer/clients/manage/">Instagram Manage Clients</see>.</param>
+            <param name="clientSecret">The <b>Client Secret</b> obtained from the <see href="http://instagram.com/developer/clients/manage/">Instagram Manage Clients</see>.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="scope">The scope of the access request.</param>
+            <param name="returnUrl">The address to return.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="responseType">Allows to set the type of response that is expected from the server. Default: <see cref="F:Nemiro.OAuth.ResponseType.Token"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.InstagramLogin.#ctor(Nemiro.OAuth.Clients.InstagramClient,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the login form with a specified OAuth client.
+            </summary>
+            <param name="client">Instance of the OAuth client.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="responseType">Allows to set the type of response that is expected from the server. Default: <see cref="F:Nemiro.OAuth.ResponseType.Token"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.InstagramLogin.Logout">
+            <summary>
+            Logout.
+            </summary>
+        </member>
+        <member name="T:Nemiro.OAuth.LoginForms.LinkedInLogin">
+            <summary>
+            Represents login form for LinkedIn.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.LinkedInLogin.#ctor(System.String,System.String,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a new instance of the login form with a specified parameters.
+            </summary>
+            <param name="clientId">The <b>Api Key</b> obtained from the <see href="https://www.linkedin.com/secure/developer">LinkedIn Dashboard</see>.</param>
+            <param name="clientSecret">The <b>Secret Key</b> obtained from the <see href="https://www.linkedin.com/secure/developer">LinkedIn Dashboard</see>.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="returnUrl">The address to return. You can use <see href="https://oauthproxy.nemiro.net"/>, but for reliability use your own server that you control.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.LinkedInLogin.#ctor(System.String,System.String,System.String,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a new instance of the login form with a specified parameters.
+            </summary>
+            <param name="clientId">The <b>Api Key</b> obtained from the <see href="https://www.linkedin.com/secure/developer">LinkedIn Dashboard</see>.</param>
+            <param name="clientSecret">The <b>Secret Key</b> obtained from the <see href="https://www.linkedin.com/secure/developer">LinkedIn Dashboard</see>.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="scope">The scope of the access request.</param>
+            <param name="returnUrl">The address to return. You can use <see href="https://oauthproxy.nemiro.net"/>, but for reliability use your own server that you control.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.LinkedInLogin.#ctor(Nemiro.OAuth.Clients.LinkedInClient,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a new instance of the login form with a specified OAuth client.
+            </summary>
+            <param name="client">Instance of the OAuth client.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+        </member>
+        <member name="T:Nemiro.OAuth.LoginForms.LiveLogin">
+            <summary>
+            Represents login form for Microsoft Live.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.LiveLogin.#ctor(System.String,System.String,System.String,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the login form with a specified parameters.
+            </summary>
+            <param name="clientId">The Client ID obtained from the <see href="https://account.live.com/developers/applications/index">Live Connect App Management</see>.</param>
+            <param name="clientSecret">The Client Secret obtained from the <see href="https://account.live.com/developers/applications/index">Live Connect App Management</see>.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="returnUrl">The address to return. You can use <see href="https://oauthproxy.nemiro.net"/>, but for reliability use your own server that you control.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="responseType">Allows to set the type of response that is expected from the server. Default: <see cref="F:Nemiro.OAuth.ResponseType.Token"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.LiveLogin.#ctor(System.String,System.String,System.String,System.String,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the login form with a specified parameters.
+            </summary>
+            <param name="clientId">The Client ID obtained from the <see href="https://account.live.com/developers/applications/index">Live Connect App Management</see>.</param>
+            <param name="clientSecret">The Client Secret obtained from the <see href="https://account.live.com/developers/applications/index">Live Connect App Management</see>.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="scope">The scope of the access request.</param>
+            <param name="returnUrl">The address to return. You can use <see href="https://oauthproxy.nemiro.net"/>, but for reliability use your own server that you control.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="responseType">Allows to set the type of response that is expected from the server. Default: <see cref="F:Nemiro.OAuth.ResponseType.Token"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.LiveLogin.#ctor(Nemiro.OAuth.Clients.LiveClient,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the login form with a specified OAuth client.
+            </summary>
+            <param name="client">Instance of the OAuth client.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="responseType">Allows to set the type of response that is expected from the server. Default: <see cref="F:Nemiro.OAuth.ResponseType.Token"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.LiveLogin.WebDocumentLoaded(System.Windows.Forms.WebBrowser,System.Uri)">
+            <summary>
+            Handler of event to receive notification when the document finishes loading. 
+            </summary>
+            <param name="webBrowser">The <see cref="T:System.Windows.Forms.WebBrowser"/> instance.</param>
+            <param name="url">The loaded url.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.LiveLogin.Logout">
+            <summary>
+            Logout.
+            </summary>
+        </member>
+        <member name="T:Nemiro.OAuth.LoginForms.MailRuLogin">
+            <summary>
+            Represents login form for @Mail.ru
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.MailRuLogin.#ctor(System.String,System.String,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the login form with a specified parameters.
+            </summary>
+            <param name="clientId">The Client ID.</param>
+            <param name="clientSecret">The Client Secret.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="responseType">Allows to set the type of response that is expected from the server. Default: <see cref="F:Nemiro.OAuth.ResponseType.Token"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.MailRuLogin.#ctor(System.String,System.String,System.String,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the login form with a specified parameters.
+            </summary>
+            <param name="clientId">The Client ID.</param>
+            <param name="clientSecret">The Client Secret.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="returnUrl">The address to return. Default: <see href="http://connect.mail.ru/oauth/success.html"/>.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="responseType">Allows to set the type of response that is expected from the server. Default: <see cref="F:Nemiro.OAuth.ResponseType.Token"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.MailRuLogin.#ctor(System.String,System.String,System.String,System.String,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the login form with a specified parameters.
+            </summary>
+            <param name="clientId">The Client ID.</param>
+            <param name="clientSecret">The Client Secret.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="scope">The scope of the access request.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="returnUrl">The address to return. Default: <see href="http://connect.mail.ru/oauth/success.html"/>.</param>
+            <param name="responseType">Allows to set the type of response that is expected from the server. Default: <see cref="F:Nemiro.OAuth.ResponseType.Token"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.MailRuLogin.#ctor(Nemiro.OAuth.Clients.MailRuClient,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the login form with a specified OAuth client.
+            </summary>
+            <param name="client">Instance of the OAuth client.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="responseType">Allows to set the type of response that is expected from the server. Default: <see cref="F:Nemiro.OAuth.ResponseType.Token"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.MailRuLogin.Logout">
+            <summary>
+            Logout.
+            </summary>
+        </member>
+        <member name="T:Nemiro.OAuth.LoginForms.OdnoklassnikiLogin">
+            <summary>
+            Represents login form for Ok.ru
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.OdnoklassnikiLogin.#ctor(System.String,System.String,System.String,System.String,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the login form with a specified parameters.
+            </summary>
+            <param name="clientId">The Client ID.</param>
+            <param name="clientSecret">The Client Secret.</param>
+            <param name="publickKey">The Public Key.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="returnUrl">The address to return. Default: <see href="https://api.ok.ru/blank.html"/>.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="responseType">Allows to set the type of response that is expected from the server. Default: <see cref="F:Nemiro.OAuth.ResponseType.Token"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.OdnoklassnikiLogin.#ctor(System.String,System.String,System.String,System.String,System.String,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the login form with a specified parameters.
+            </summary>
+            <param name="clientId">The Client ID.</param>
+            <param name="clientSecret">The Client Secret.</param>
+            <param name="publickKey">The Public Key.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="scope">The scope of the access request.</param>
+            <param name="returnUrl">The address to return. Default: <see href="https://api.ok.ru/blank.html"/>.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="responseType">Allows to set the type of response that is expected from the server. Default: <see cref="F:Nemiro.OAuth.ResponseType.Token"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.OdnoklassnikiLogin.#ctor(Nemiro.OAuth.Clients.OdnoklassnikiClient,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the login form with a specified OAuth client.
+            </summary>
+            <param name="client">Instance of the OAuth client.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="responseType">Allows to set the type of response that is expected from the server. Default: <see cref="F:Nemiro.OAuth.ResponseType.Token"/>.</param>
+        </member>
+        <member name="T:Nemiro.OAuth.LoginForms.SoundCloudLogin">
+            <summary>
+            Represents login form for SoundCloud.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.SoundCloudLogin.#ctor(System.String,System.String,System.String,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the login form with a specified parameters.
+            </summary>
+            <param name="clientId">The <b>Client ID</b> obtained from the <see href="http://soundcloud.com/you/apps">SoundCloud Applications</see>.</param>
+            <param name="clientSecret">The <b>Client Secret</b> obtained from the <see href="http://soundcloud.com/you/apps">SoundCloud Applications</see>.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="returnUrl">The address to return. You can use <see href="https://oauthproxy.nemiro.net"/>, but for reliability use your own server that you control.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="responseType">Allows to set the type of response that is expected from the server. Default: <see cref="F:Nemiro.OAuth.ResponseType.Token"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.SoundCloudLogin.#ctor(System.String,System.String,System.String,System.String,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the login form with a specified parameters.
+            </summary>
+            <param name="clientId">The <b>Client ID</b> obtained from the <see href="http://soundcloud.com/you/apps">SoundCloud Applications</see>.</param>
+            <param name="clientSecret">The <b>Client Secret</b> obtained from the <see href="http://soundcloud.com/you/apps">SoundCloud Applications</see>.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="scope">The scope of the access request.</param>
+            <param name="returnUrl">The address to return. You can use <see href="https://oauthproxy.nemiro.net"/>, but for reliability use your own server that you control.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="responseType">Allows to set the type of response that is expected from the server. Default: <see cref="F:Nemiro.OAuth.ResponseType.Token"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.SoundCloudLogin.#ctor(Nemiro.OAuth.Clients.SoundCloudClient,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the login form with a specified OAuth client.
+            </summary>
+            <param name="client">Instance of the OAuth client.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="responseType">Allows to set the type of response that is expected from the server. Default: <see cref="F:Nemiro.OAuth.ResponseType.Token"/>.</param>
+        </member>
+        <member name="T:Nemiro.OAuth.LoginForms.TumblrLogin">
+            <summary>
+            Represents login form for Tumblr.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.TumblrLogin.#ctor(System.String,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a new instance of the login form with a specified parameters.
+            </summary>
+            <param name="consumerKey">The <b>Consumer Key</b> obtained from the <see href="https://www.tumblr.com/oauth/apps">Tumblr Dashboard</see>.</param>
+            <param name="consumerSecret">The <b>Consumer Secret</b> obtained from the <see href="https://www.tumblr.com/oauth/apps">Tumblr Dashboard</see>.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.TumblrLogin.#ctor(Nemiro.OAuth.Clients.TumblrClient,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a new instance of the login form with a specified OAuth client.
+            </summary>
+            <param name="client">Instance of the OAuth client.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.TumblrLogin.WebDocumentLoaded(System.Windows.Forms.WebBrowser,System.Uri)">
+            <summary>
+            Handler of event to receive notification when the document finishes loading. 
+            </summary>
+            <param name="webBrowser">The <see cref="T:System.Windows.Forms.WebBrowser"/> instance.</param>
+            <param name="url">The loaded url.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.TumblrLogin.Logout">
+            <summary>
+            Logout.
+            </summary>
+        </member>
+        <member name="T:Nemiro.OAuth.LoginForms.TwitterLogin">
+            <summary>
+            Represents login form for Twitter.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.TwitterLogin.#ctor(System.String,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a new instance of the login form with a specified parameters.
+            </summary>
+            <param name="consumerKey">The API Key obtained from the <see href="https://apps.twitter.com">Twitter Application Management</see>.</param>
+            <param name="consumerSecret">The API Secret obtained from the <see href="https://apps.twitter.com">Twitter Application Management</see>.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.TwitterLogin.#ctor(Nemiro.OAuth.Clients.TwitterClient,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a new instance of the login form with a specified OAuth client.
+            </summary>
+            <param name="client">Instance of the OAuth client.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.TwitterLogin.WebDocumentLoaded(System.Windows.Forms.WebBrowser,System.Uri)">
+            <summary>
+            Handler of event to receive notification when the document finishes loading. 
+            </summary>
+            <param name="webBrowser">The <see cref="T:System.Windows.Forms.WebBrowser"/> instance.</param>
+            <param name="url">The loaded url.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.TwitterLogin.Logout">
+            <summary>
+            Logout.
+            </summary>
+        </member>
+        <member name="T:Nemiro.OAuth.LoginForms.VkontakteLogin">
+            <summary>
+            Represents login form for vk.com.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.VkontakteLogin.#ctor(System.String,System.String,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the login form with a specified parameters.
+            </summary>
+            <param name="clientId">The Application ID obtained from the <see href="http://vk.com/dev">VK App development</see>.</param>
+            <param name="clientSecret">The Secure Key obtained from the <see href="http://vk.com/dev">VK App development</see>.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="responseType">Allows to set the type of response that is expected from the server. Default: <see cref="F:Nemiro.OAuth.ResponseType.Token"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.VkontakteLogin.#ctor(System.String,System.String,System.String,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the login form with a specified parameters.
+            </summary>
+            <param name="clientId">The Application ID obtained from the <see href="http://vk.com/dev">VK App development</see>.</param>
+            <param name="clientSecret">The Secure Key obtained from the <see href="http://vk.com/dev">VK App development</see>.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="returnUrl">The address to return. Default: <see href="https://oauth.vk.com/blank.html"/>.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="responseType">Allows to set the type of response that is expected from the server. Default: <see cref="F:Nemiro.OAuth.ResponseType.Token"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.VkontakteLogin.#ctor(System.String,System.String,System.String,System.String,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the login form with a specified parameters.
+            </summary>
+            <param name="clientId">The Application ID obtained from the <see href="http://vk.com/dev">VK App development</see>.</param>
+            <param name="clientSecret">The Secure Key obtained from the <see href="http://vk.com/dev">VK App development</see>.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="scope">The scope of the access request.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="returnUrl">The address to return. Default: <see href="https://oauth.vk.com/blank.html"/>.</param>
+            <param name="responseType">Allows to set the type of response that is expected from the server. Default: <see cref="F:Nemiro.OAuth.ResponseType.Token"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.VkontakteLogin.#ctor(Nemiro.OAuth.Clients.VkontakteClient,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the login form with a specified OAuth client.
+            </summary>
+            <param name="client">Instance of the OAuth client.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="responseType">Allows to set the type of response that is expected from the server. Default: <see cref="F:Nemiro.OAuth.ResponseType.Token"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.VkontakteLogin.WebDocumentLoaded(System.Windows.Forms.WebBrowser,System.Uri)">
+            <summary>
+            Handler of event to receive notification when the document finishes loading. 
+            </summary>
+            <param name="webBrowser">The <see cref="T:System.Windows.Forms.WebBrowser"/> instance.</param>
+            <param name="url">The loaded url.</param>
+        </member>
+        <member name="T:Nemiro.OAuth.LoginForms.YahooLogin">
+            <summary>
+            Represents login form for Yahoo.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.YahooLogin.#ctor(System.String,System.String,System.String,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the login form with a specified parameters.
+            </summary>
+            <param name="clientId">The <b>Consumer Key</b> obtained from the <see href="https://developer.apps.yahoo.com/projects">Yahoo Developer Dashboard</see>.</param>
+            <param name="clientSecret">The <b>Consumer Secret</b> obtained from the <see href="https://developer.apps.yahoo.com/projects">Yahoo Developer Dashboard</see>.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="returnUrl">The address to return.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="responseType">Allows to set the type of response that is expected from the server. Default: <see cref="F:Nemiro.OAuth.ResponseType.Token"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.YahooLogin.#ctor(System.String,System.String,System.String,System.String,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the login form with a specified parameters.
+            </summary>
+            <param name="clientId">The <b>Consumer Key</b> obtained from the <see href="https://developer.apps.yahoo.com/projects">Yahoo Developer Dashboard</see>.</param>
+            <param name="clientSecret">The <b>Consumer Secret</b> obtained from the <see href="https://developer.apps.yahoo.com/projects">Yahoo Developer Dashboard</see>.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="scope">The scope of the access request.</param>
+            <param name="returnUrl">The address to return.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="responseType">Allows to set the type of response that is expected from the server. Default: <see cref="F:Nemiro.OAuth.ResponseType.Token"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.YahooLogin.#ctor(Nemiro.OAuth.Clients.YahooClient,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the login form with a specified OAuth client.
+            </summary>
+            <param name="client">Instance of the OAuth client.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="responseType">Allows to set the type of response that is expected from the server. Default: <see cref="F:Nemiro.OAuth.ResponseType.Token"/>.</param>
+        </member>
+        <member name="T:Nemiro.OAuth.LoginForms.YandexLogin">
+            <summary>
+            Represents login form for Yandex.
+            </summary>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.YandexLogin.#ctor(System.String,System.String,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the login form with a specified parameters.
+            </summary>
+            <param name="clientId">The Application ID.</param>
+            <param name="clientSecret">The Application Password.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="responseType">Allows to set the type of response that is expected from the server. Default: <see cref="F:Nemiro.OAuth.ResponseType.Token"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.YandexLogin.#ctor(System.String,System.String,System.String,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the login form with a specified parameters.
+            </summary>
+            <param name="clientId">The Application ID.</param>
+            <param name="clientSecret">The Application Password.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="returnUrl">The address to return. Default: <see href="https://oauth.yandex.ru/verification_code"/>.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="responseType">Allows to set the type of response that is expected from the server. Default: <see cref="F:Nemiro.OAuth.ResponseType.Token"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.YandexLogin.#ctor(System.String,System.String,System.String,System.String,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the login form with a specified parameters.
+            </summary>
+            <param name="clientId">The Application ID.</param>
+            <param name="clientSecret">The Application Password.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="returnUrl">The address to return. Default: <see href="https://oauth.yandex.ru/verification_code"/>.</param>
+            <param name="scope">The scope of the access request.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="responseType">Allows to set the type of response that is expected from the server. Default: <see cref="F:Nemiro.OAuth.ResponseType.Token"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.YandexLogin.#ctor(Nemiro.OAuth.Clients.YandexClient,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Initializes a new instance of the login form with a specified OAuth client.
+            </summary>
+            <param name="client">Instance of the OAuth client.</param>
+            <param name="autoLogout">Disables saving and restoring authorization cookies in WebBrowser. Default: false.</param>
+            <param name="loadUserInfo">Indicates the need to make a request for recive the user profile or not. Default: false.</param>
+            <param name="responseType">Allows to set the type of response that is expected from the server. Default: <see cref="F:Nemiro.OAuth.ResponseType.Token"/>.</param>
+        </member>
+        <member name="M:Nemiro.OAuth.LoginForms.YandexLogin.Logout">
+            <summary>
+            Logout.
+            </summary>
+        </member>
+        <member name="T:Nemiro.OAuth.LoginForms.Properties.Resources">
+            <summary>
+              Класс ресурса со строгой типизацией для поиска локализованных строк и т.д.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.LoginForms.Properties.Resources.ResourceManager">
+            <summary>
+              Возвращает кэшированный экземпляр ResourceManager, использованный этим классом.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.LoginForms.Properties.Resources.Culture">
+            <summary>
+              Перезаписывает свойство CurrentUICulture текущего потока для всех
+              обращений к ресурсу с помощью этого класса ресурса со строгой типизацией.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.LoginForms.Properties.Resources.aleksey_nemiro">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.LoginForms.Properties.Resources.amazon">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Icon, аналогичного (Значок).
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.LoginForms.Properties.Resources.codeproject">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Icon, аналогичного (Значок).
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.LoginForms.Properties.Resources.dropbox">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Icon, аналогичного (Значок).
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.LoginForms.Properties.Resources.facebook">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Icon, аналогичного (Значок).
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.LoginForms.Properties.Resources.foursquare">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Icon, аналогичного (Значок).
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.LoginForms.Properties.Resources.github">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Icon, аналогичного (Значок).
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.LoginForms.Properties.Resources.google">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Icon, аналогичного (Значок).
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.LoginForms.Properties.Resources.instagram">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Icon, аналогичного (Значок).
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.LoginForms.Properties.Resources.linkedin">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Icon, аналогичного (Значок).
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.LoginForms.Properties.Resources.live">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Icon, аналогичного (Значок).
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.LoginForms.Properties.Resources.loader">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.LoginForms.Properties.Resources.loader2">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.LoginForms.Properties.Resources.mailru">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Icon, аналогичного (Значок).
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.LoginForms.Properties.Resources.mediakit">
+            <summary>
+              Поиск локализованного ресурса типа System.Byte[].
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.LoginForms.Properties.Resources.odnoklassniki">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Icon, аналогичного (Значок).
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.LoginForms.Properties.Resources.printerest">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Icon, аналогичного (Значок).
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.LoginForms.Properties.Resources.soundcloud">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Icon, аналогичного (Значок).
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.LoginForms.Properties.Resources.sourceforge">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Icon, аналогичного (Значок).
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.LoginForms.Properties.Resources.tumblr">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Icon, аналогичного (Значок).
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.LoginForms.Properties.Resources.twitter">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Icon, аналогичного (Значок).
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.LoginForms.Properties.Resources.vkontakte">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Icon, аналогичного (Значок).
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.LoginForms.Properties.Resources.yahoo">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Icon, аналогичного (Значок).
+            </summary>
+        </member>
+        <member name="P:Nemiro.OAuth.LoginForms.Properties.Resources.yandex">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Icon, аналогичного (Значок).
+            </summary>
+        </member>
+    </members>
+</doc>
